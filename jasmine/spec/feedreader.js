@@ -70,8 +70,10 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('toggle menu on click', function() {
+            //getting the menu element and the bosy class that's responsible for menu visibility
             const menuLink = document.querySelector('.menu-icon-link');
             const bodyClass = document.querySelector('body').className;
+            //listens for the click events
             let clickCount = 0;
             menuLink.addEventListener('click', function() {
               clickCount += 1;
@@ -97,7 +99,7 @@ $(function() {
                done();
            });
          });
-
+         //tests for at least one entry by confirmimg inner HTML to be greater than 0
          it('has at least one entry', function () {
            let entries = document.querySelector('.entry h2').innerHTML;
            expect(entries.length).toBeGreaterThan(0);
@@ -120,7 +122,7 @@ $(function() {
               loadFeed(1, done);
            });
          });
-
+         //tests for feeds being different by comparing their inner HTML
          it('loads different feed', function() {
            let secondFeed = document.querySelector('.feed').innerHTML;
            expect(secondFeed).not.toBe(firstFeed);
