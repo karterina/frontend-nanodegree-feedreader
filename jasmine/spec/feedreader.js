@@ -70,19 +70,13 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('toggle menu on click', function() {
-            //getting the menu element and the bosy class that's responsible for menu visibility
-            const menuLink = document.querySelector('.menu-icon-link');
-            const bodyClass = document.querySelector('body').className;
-            //listens for the click events
-            let clickCount = 0;
-            menuLink.addEventListener('click', function() {
-              clickCount += 1;
-            });
-            if (clickCount % 2 == 0) {
-              expect(bodyClass).toBe('menu-hidden');
-            } else {
-              expect(bodyClass).not.toBe('menu-hidden');
-            };
+            var body = document.querySelector('body')
+            // menu is visible
+            document.getElementsByClassName('menu-icon-link')[0].click()
+            expect(body.classList).not.toContain('menu-hidden');
+            // menu is hidden
+            document.getElementsByClassName('menu-icon-link')[0].click()
+            expect(body.classList).toContain('menu-hidden');
          });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -101,7 +95,7 @@ $(function() {
          });
          //tests for at least one entry by confirmimg inner HTML to be greater than 0
          it('has at least one entry', function () {
-           let entries = document.querySelector('.entry h2').innerHTML;
+           let entries = document.querySelectorAll('.feed .entry');
            expect(entries.length).toBeGreaterThan(0);
          });
       });
